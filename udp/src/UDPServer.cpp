@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
         if(bytesRcvd > 0)
         {
             // Got a message from the socket. Print and NULL terminate last character of received bytes
-            printf("UDPServer received %d bytes... Message: %s\n", bytesRcvd, buffer);
             buffer[bytesRcvd] = '\0';
+            printf("UDPServer received %d bytes... Message: %s\n", bytesRcvd, buffer);
         }
         else if(bytesRcvd == 0)
         {
