@@ -2,13 +2,14 @@
 
 #include <string>
 
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <winsock2.h>
-#include <errno.h>
-#include <windows.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
    
 #define PORT    5035
 #define MAXLINE 1024
@@ -16,21 +17,12 @@
 // Driver code
 int main() 
 {
-    SOCKET fd;
+    int fd;
     char buffer[MAXLINE];
     std::string hello = "THIS IS A UDP DATAGRAM";
     struct sockaddr_in servaddr = {0};
-    WSADATA wsa = {0};
-
-    //Initialise winsock
-	printf("Initialising Winsock...\n");
-	if (WSAStartup(MAKEWORD(2,1), &wsa) != 0)
-	{
-		printf("Failed. Error Code : %d",WSAGetLastError());
-		exit(EXIT_FAILURE);
-	}
-	printf("Initialised.\n");
    
+    printf("Opening socket\n");
     // Creating socket file descriptor
     fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if(fd < 0) 
@@ -38,22 +30,14 @@ int main()
         perror("Socket creation failed");
         exit(EXIT_FAILURE);
     }
+    printf("Socket opened\n");
    
     memset(&servaddr, 0, sizeof(servaddr));
        
     // Filling server information
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(PORT);
-    servaddr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
-    
-    //Bind
-    if(bind(fd, (sockaddr*)&servaddr, sizeof(servaddr)) == SOCKET_ERROR)
-	{
-		printf("Bind failed with error code : %d" , WSAGetLastError());
-        closesocket(fd);
-		exit(EXIT_FAILURE);
-	}
-	puts("Bind done");
+    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     int bytesSent = 0;
     unsigned short sent = 0;  
@@ -71,13 +55,13 @@ int main()
         }
         else
         {
-            printf("UDPClient experienced error sending bytes. ERROR CODE: %d -- Exiting...\n", WSAGetLastError());
+            printf("UDPClient experienced error sending bytes. Exiting...\n");
             break;
         }
-        Sleep(1000);
+        sleep(1);
         sent++;
     }
    
-    closesocket(fd);
+    close(fd);
     return 0;
 }

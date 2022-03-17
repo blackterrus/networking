@@ -9,7 +9,7 @@
 # src/<file> - specifies source where main function resides
 ##################################
 
-g++ -Iinc/ -o udpserver src/UDPServer.cpp -lws2_32
+g++ -Iinc/ -o udpserver src/UDPServer.cpp
 
 # Builds the udpclient application
 ##################################
@@ -19,4 +19,4 @@ g++ -Iinc/ -o udpserver src/UDPServer.cpp -lws2_32
 # src/<file> - specifies source where main function resides
 ##################################
 
-g++ -Iinc/ -o udpclient src/UDPClient.cpp -lws2_32
+g++ -Iinc/ -o udpclient src/UDPClient.cpp
