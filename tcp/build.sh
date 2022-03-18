@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-# Builds the udpserver application
+# Builds the tcpserver application
 ##################################
 # g++ - calls compiler
 # -I<path> - sets path as inclusion directory for header files
@@ -11,9 +11,9 @@
 # src/<file> - specifies source where main function resides
 ##################################
 
-g++ -Iinc/ -o udpserver src/UDPServer.cpp
+g++ -Iinc/ -o tcpserver src/TCPServer.cpp
 
-# Builds the udpclient application
+# Builds the tcpclient application
 ##################################
 # g++ - calls compiler
 # -I/path - sets path as inclusion directory for header files
@@ -21,4 +21,4 @@ g++ -Iinc/ -o udpserver src/UDPServer.cpp
 # src/<file> - specifies source where main function resides
 ##################################
 
-g++ -Iinc/ -o udpclient src/UDPClient.cpp
+g++ -Iinc/ -o tcpclient src/TCPClient.cpp
