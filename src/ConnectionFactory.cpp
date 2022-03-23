@@ -43,6 +43,7 @@ SocketInterface* ConnectionFactory::newConnection(ConnectionType type)
             if(ifptr == 0)
             {
                 printf("ConnectionFactory::newConnection(): Error creating new UDPSocket\n");
+		break;
             }
             numConnections_++;
             break;
