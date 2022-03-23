@@ -8,4 +8,12 @@ enum ConnectionType
     MAX_CONN_TYPES
 };
 
+enum ConnectionRole
+{
+    XMIT_SEND, // Can only send
+    XMIT_RECV, // Can only recv
+    XMIT_DUAL, // Can do both
+    MAX_ROLES
+};
+
 #endif

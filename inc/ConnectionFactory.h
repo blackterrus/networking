@@ -1,11 +1,12 @@
 #ifndef CONNECTIONFACTORY_H_
 #define CONNECTIONFACTORY_H_
 
-#include "SocketInterface.h"
+#include "UDPSocket.h"
 
 #include "ConnectionTypes.h"
 
 class SocketInterface;
+class UDPSocket;
 
 class ConnectionFactory
 {

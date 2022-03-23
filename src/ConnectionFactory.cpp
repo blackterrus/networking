@@ -38,7 +38,12 @@ SocketInterface* ConnectionFactory::newConnection(ConnectionType type)
     {
         case 0:
         {
-            std::cout << "Returning UDP" << std::endl;
+            printf("ConnectionFactory::newConnection(): Creating new UDPSocket\n");
+            ifptr = new UDPSocket();
+            if(ifptr == 0)
+            {
+                printf("ConnectionFactory::newConnection(): Error creating new UDPSocket\n");
+            }
             numConnections_++;
             break;
         }
