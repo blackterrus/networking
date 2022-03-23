@@ -39,7 +39,7 @@ SocketInterface* ConnectionFactory::newConnection(ConnectionType type)
         case 0:
         {
             printf("ConnectionFactory::newConnection(): Creating new UDPSocket\n");
-            ifptr = new UDPSocket();
+            ifptr = static_cast<SocketInterface*>(new UDPSocket());
             if(ifptr == 0)
             {
                 printf("ConnectionFactory::newConnection(): Error creating new UDPSocket\n");

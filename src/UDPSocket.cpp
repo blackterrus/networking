@@ -12,7 +12,8 @@
 
 #define PORT 5035
 
-UDPSocket::UDPSocket() 
+UDPSocket::UDPSocket()
+: SocketInterface()
 {
     fd_ = 0;
     addr_ = {0};

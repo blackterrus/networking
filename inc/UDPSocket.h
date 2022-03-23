@@ -6,8 +6,8 @@
 class UDPSocket : public SocketInterface
 {
 public:
-    UDPSocket() override;
-    virtual ~UDPSocket();
+    UDPSocket();
+    virtual ~UDPSocket() override;
     int createSocket() override;
     void closeSocket() override;
     int bindSocket() override;

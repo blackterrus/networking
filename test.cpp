@@ -8,7 +8,7 @@ int main()
     if(factory != 0)
     {
         SocketInterface* ptr = 0;
-        factory->newConnection(ConnectionType::UDP_CONN);
+        ptr = factory->newConnection(ConnectionType::UDP_CONN);
         std::cout << "numConnections_: " << factory->getNumConnections() << std::endl;
         if(ptr != 0)
         {
@@ -27,11 +27,12 @@ int main()
                 if(retVal < 0)
                 {
                     printf("main(): Error binding to socket\n");
+                    ptr->closeSocket();
                     return -1;
                 }
                 else
                 {
-                    ptr->recvFrom();
+                    //ptr->recvFrom();
                     ptr->closeSocket();
                 }
             }
